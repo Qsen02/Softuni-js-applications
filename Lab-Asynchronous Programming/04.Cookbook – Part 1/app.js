@@ -21,6 +21,7 @@ async function loadRecipes() {
 }
 
 function createElements(data) {
+    const mainRef = document.querySelector("main");
     let articleEl = document.createElement("article");
     articleEl.classList.add("preview");
     let divEl = document.createElement("div");
@@ -35,7 +36,22 @@ function createElements(data) {
     imgEl.src = data.img;
     divEl2.appendChild(imgEl);
     articleEl.appendChild(divEl2);
-    articleEl.addEventListener("click", () => loadDetails(data._id, articleEl));
+    articleEl.addEventListener("click", (event) => {
+        for (let child of mainRef.children) {
+            let array = Array.from(child.children);
+            let title = array[0].textContent;
+            let img = array[1].children[0].children[0];
+            if (array.length == 3 && child != event.target) {
+                child.innerHTML = ` <div class="title">
+                    <h2>${title}</h2>
+                  </div>
+                 <div class="small">
+                    <img src=${img.src}>
+                 </div> `
+            }
+        }
+        loadDetails(data._id, articleEl);
+    });
     return articleEl;
 }
 async function onLoadDetails(id) {
@@ -51,10 +67,6 @@ async function onLoadDetails(id) {
         alert(error);
         throw error;
     }
-}
-
-async function loadingDeatils(data) {
-    console.log(await data);
 }
 
 async function loadDetails(id, element) {

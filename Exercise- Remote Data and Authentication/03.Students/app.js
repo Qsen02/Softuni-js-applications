@@ -2,6 +2,7 @@ let formRef = document.getElementById("form");
 formRef.addEventListener("submit", addStudent);
 const tableRef = document.querySelector("#results tbody");
 const url = "http://localhost:3030/jsonstore/collections/students";
+createTable();
 
 async function addStudent(event) {
     event.preventDefault();
@@ -19,6 +20,7 @@ async function addStudent(event) {
         body: JSON.stringify({ firstName, lastName, facultyNumber, grade })
     })
     formRef.reset();
+    tableRef.innerHTML = "";
     await createTable();
 }
 

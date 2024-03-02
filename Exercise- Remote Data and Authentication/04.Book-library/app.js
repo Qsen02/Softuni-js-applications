@@ -1,11 +1,9 @@
 const loadBtnRef = document.getElementById("loadBooks");
 const tableRef = document.querySelector("tbody");
-const bodyRef = document.querySelector("body");
-const formRefPost = bodyRef.children[2];
-const formRefPut = bodyRef.children[3];
+const formRef = document.querySelector("form");
 loadBtnRef.addEventListener("click", loadBooks);
 const url = "http://localhost:3030/jsonstore/collections/books";
-formRefPost.addEventListener("submit", addBook);
+formRef.addEventListener("submit", addBook);
 
 async function loadBooks() {
     try {
@@ -32,7 +30,7 @@ async function addBook(event) {
         body: JSON.stringify({ title, author }),
     });
     await loadBooks();
-    formRefPost.reset();
+    formRef.reset();
 }
 
 function createRow(data, i, id) {
@@ -61,10 +59,15 @@ function createRow(data, i, id) {
 function editBook(event) {
     let id = event.target.dataset.id;
     let target = event.target;
-    formRefPut.style.display = "block";
-    formRefPost.style.display = "none";
-    debugger
-    formRefPut.addEventListener("submit", (event) => {
+    formRef.children[0].textContent = "Edit FORM";
+    formRef.children[5].remove();
+    formRef.children[2].value = target.parentElement.parentElement.children[0].textContent;
+    formRef.children[4].value = target.parentElement.parentElement.children[1].textContent;
+    let saveBtn = document.createElement("button");
+    saveBtn.textContent = "Save";
+    formRef.appendChild(saveBtn);
+    formRef.removeEventListener("submit", addBook);
+    formRef.addEventListener("submit", (event) => {
         event.preventDefault();
         makePutRequest(id, target)
     });
@@ -75,7 +78,7 @@ async function deleteBook(event) {
     event.target.parentElement.parentElement.remove();
 }
 async function makePutRequest(id, target) {
-    let formData = new FormData(formRefPut);
+    let formData = new FormData(formRef);
     let title = formData.get("title").trim();
     let author = formData.get("author").trim();
     await fetch(url + "/" + id, {
@@ -83,8 +86,13 @@ async function makePutRequest(id, target) {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ title, author }),
     });
-    formRefPut.style.display = "none";
-    formRefPost.style.display = "block";
+    formRef.children[0].textContent = "FORM";
+    formRef.children[5].remove();
+    let submitBtn = document.createElement("button");
+    submitBtn.textContent = "Submit";
+    formRef.appendChild(submitBtn);
     target.parentElement.parentElement.children[0].textContent = title;
     target.parentElement.parentElement.children[1].textContent = author;
+    formRef.addEventListener("submit", addBook);
+    formRef.reset();
 }

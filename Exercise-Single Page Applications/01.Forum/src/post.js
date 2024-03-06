@@ -77,6 +77,7 @@ function start(id) {
     function createElements(data) {
         let divEl = document.createElement("div");
         divEl.classList.add("header");
+        divEl.dataset.id = id;
         let currentDate = new Date();
         let day = currentDate.getDate();
         let month = currentDate.getMonth() + 1;
@@ -93,6 +94,7 @@ function start(id) {
     function createComment(data) {
         let divEl = document.createElement("div");
         divEl.id = "user-comment";
+        divEl.dataset.id = data._id;
         divEl.innerHTML = `<div class="topic-name-wrapper">
                  <div class="topic-name">
                  <p><strong>${data.username}</strong> commented on <time>3/15/2021, 12:39:02 AM</time></p>

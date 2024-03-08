@@ -4,22 +4,21 @@ import { loadDetails } from "./details.js";
 export function loadHome() {
     const sections = document.querySelectorAll("section");
     sections.forEach(el => el.style.display = "none");
-    let userData = getUserData();
-    if (userData) {
-        const homeView = document.getElementById("home-page");
-        homeView.style.display = "block";
-        start();
-    }
+    const homeView = document.getElementById("home-page");
+    homeView.style.display = "block";
+    start();
 }
 
 function start() {
     const url = "http://localhost:3030/data/movies";
+    let userData = getUserData();
     const movieBtnSection = document.getElementById("add-movie-button");
-    movieBtnSection.children[0].addEventListener("click", addMovie);
     const movieList = document.getElementById("movies-list");
     const movieSection = document.getElementById("movie");
     movieSection.style.display = "block";
-    movieBtnSection.style.display = "block";
+    if (userData) {
+        movieBtnSection.style.display = "block";
+    }
     movieList.style.display = "inline-block";
     showMovies();
 
@@ -28,10 +27,6 @@ function start() {
         movieList.replaceChildren(...data.map(el => createContent(el)));
         let detailBtns = document.querySelectorAll("#movies-list li div button");
         detailBtns.forEach(el => el.addEventListener("click", loadDetails));
-    }
-
-    async function addMovie() {
-
     }
 
     function createContent(data) {

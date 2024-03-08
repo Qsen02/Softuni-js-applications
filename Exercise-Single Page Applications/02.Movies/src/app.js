@@ -3,6 +3,7 @@ import { registration } from "./register.js";
 import { logingin } from "./login.js";
 import { logingout } from "./logout.js";
 import { getUserData } from "./utils.js";
+import { loadCreateForm } from "./cerateMovies.js";
 const sections = document.querySelectorAll("section");
 sections.forEach(el => el.style.display = "none");
 const links = document.querySelectorAll("ul li a");
@@ -37,4 +38,6 @@ export function update() {
         loadHome();
     }
 }
+const movieBtnSection = document.getElementById("add-movie-button");
+movieBtnSection.children[0].addEventListener("click", loadCreateForm);
 update();

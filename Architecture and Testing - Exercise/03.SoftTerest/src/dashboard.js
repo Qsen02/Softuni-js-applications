@@ -2,11 +2,7 @@ import { html, render } from "./nav.js";
 import { request } from "./data/requester.js";
 import { loadDetails } from "./details.js";
 
-export function loadDashboard() {
-    showIdeas();
-}
-
-async function showIdeas() {
+export async function loadDashboard() {
     const url = "http://localhost:3030/data/ideas?select=_id%2Ctitle%2Cimg&sortBy=_createdOn%20desc";
     let data = await request("get", url);
     if (data) {

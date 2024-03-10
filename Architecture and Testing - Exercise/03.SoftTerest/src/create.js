@@ -53,6 +53,6 @@ async function onCreate(event) {
         alert("Image must be at least 5 characters!");
         return;
     }
-    let data = await request("post", url, { title, description, img });
-    loadDashboard();
+    await request("post", url, { title, description, img });
+    await loadDashboard();
 }

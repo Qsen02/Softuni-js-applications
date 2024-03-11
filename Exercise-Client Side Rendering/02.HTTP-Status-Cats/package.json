@@ -1,0 +1,24 @@
+{
+    "name": "02.http-status-cats",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1",
+    "directories": {
+        "test": "mocha test"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chai": "^5.1.0",
+        "lit-html": "^3.1.2",
+        "mocha": "^10.3.0"
+    },
+    "devDependencies": {
+        "playwright-chromium": "^1.42.1"
+    }
+}

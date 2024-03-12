@@ -1,6 +1,6 @@
 import { getUserData, deleteUserData } from "./utils.js";
 
-export async function request(method, url, data) {
+async function request(method, url, data) {
     let options = {
         method: method,
         headers: {}
@@ -29,4 +29,16 @@ export async function request(method, url, data) {
     } catch (err) {
         alert(err.message);
     }
+}
+
+export async function get(url) {
+    return request("get", url);
+}
+
+export async function post(url, data) {
+    return request("post", url, data);
+}
+
+export async function del(url) {
+    return request("DELETE", url);
 }

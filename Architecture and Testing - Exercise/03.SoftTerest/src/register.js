@@ -1,6 +1,6 @@
 import { html, render } from "./nav.js"
+import { post } from "./data/requester.js";
 import { addUserData } from "./data/utils.js";
-import { request } from "./data/requester.js";
 
 export function loadRegister() {
     let register = () => html `<div class="container home wrapper  my-md-5 pl-md-5">
@@ -57,7 +57,7 @@ async function onRegister(event) {
         alert("Password must match!");
         return;
     }
-    let data = await request("post", url, { email, password });
+    let data = await post(url, { email, password });
     addUserData(data);
     event.target.reset();
     window.location = "/";

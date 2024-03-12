@@ -1,6 +1,6 @@
 import { html, render } from "./nav.js";
+import { post } from "./data/requester.js";
 import { addUserData } from "./data/utils.js";
-import { request } from "./data/requester.js";
 export function loadLogin() {
     let login = () => html `<div class="container home wrapper  my-md-5 pl-md-5">
 <div class="row-form d-md-flex flex-mb-equal ">
@@ -38,7 +38,7 @@ async function onLogin(event) {
     let email = formData.get("email");
     let password = formData.get("password");
     const url = "http://localhost:3030/users/login";
-    let data = await request("post", url, { email, password });
+    let data = await post(url, { email, password });
     if (!data) {
         return;
     }

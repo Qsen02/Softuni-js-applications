@@ -2,9 +2,9 @@ import { getUserData, deleteUserData } from "./data/utils.js";
 import { loadHome } from "./home.js";
 import { loadRegister } from "./register.js";
 import { loadLogin } from "./login.js";
-import { request } from "./data/requester.js";
 import { loadDashboard } from "./dashboard.js";
 import { createIdea } from "./create.js";
+import {get } from "./data/requester.js";
 let userData = getUserData();
 const navRef = document.querySelector("nav");
 let links = document.querySelectorAll("nav a");
@@ -53,7 +53,7 @@ function navigate(event) {
 
 async function onLogout() {
     const url = "http://localhost:3030/users/logout";
-    await request("get", url);
+    await get(url);
     deleteUserData();
     window.location = "/";
 }

@@ -1,6 +1,6 @@
 import { html, render } from "./nav.js";
-import { request } from "./data/requester.js";
 import { loadDashboard } from "./dashboard.js";
+import { post } from "./data/requester.js"
 export function createIdea() {
     let creating = () => html `
 <div class="container home wrapper  my-md-5 pl-md-5">
@@ -53,6 +53,6 @@ async function onCreate(event) {
         alert("Image must be at least 5 characters!");
         return;
     }
-    await request("post", url, { title, description, img });
-    await loadDashboard();
+    await post(url, { title, description, img });
+    loadDashboard();
 }

@@ -1,6 +1,6 @@
 import { html, render } from "./nav.js";
 import { getUserData } from "./data/utils.js";
-import { request } from "./data/requester.js";
+import { del, get } from "./data/requester.js"
 import { loadDashboard } from "./dashboard.js";
 export function loadDetails(event) {
     event.preventDefault();
@@ -11,7 +11,7 @@ export function loadDetails(event) {
 async function loadCurDetails(id) {
     let curUserData = getUserData();
     const url = `http://localhost:3030/data/ideas/${id}`;
-    let data = await request("get", url);
+    let data = await get(url);
     let details = () => loading(data, curUserData);
     render(details);
 }
@@ -19,8 +19,8 @@ async function loadCurDetails(id) {
 async function onDelete(event) {
     let id = event.target.dataset.id;
     const url = `http://localhost:3030/data/ideas/${id}`
-    await request("delete", url);
-    await loadDashboard();
+    await del(url);
+    window.location = "/";
 }
 
 function loading(data, userData) {

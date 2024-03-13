@@ -1,4 +1,4 @@
-import { html, render } from "./nav.js";
+import { html, render, page } from "./nav.js";
 import { post } from "./data/requester.js";
 import { addUserData } from "./data/utils.js";
 export function loadLogin() {
@@ -44,5 +44,5 @@ async function onLogin(event) {
     }
     addUserData(data);
     event.target.reset();
-    window.location = "/";
+    page.redirect("/");
 }

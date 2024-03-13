@@ -1,5 +1,4 @@
-import { html, render } from "./nav.js";
-import { loadDashboard } from "./dashboard.js";
+import { html, render, page } from "./nav.js";
 import { post } from "./data/requester.js"
 export function createIdea() {
     let creating = () => html `
@@ -54,5 +53,5 @@ async function onCreate(event) {
         return;
     }
     await post(url, { title, description, img });
-    loadDashboard();
+    page.redirect("/dashboard");
 }

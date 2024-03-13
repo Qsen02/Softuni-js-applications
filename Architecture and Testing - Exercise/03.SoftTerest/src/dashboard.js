@@ -27,6 +27,6 @@ function loadIdea(data) {
                 <p class="card-text">${el.title}</p>
             </div>
             <img class="card-image" src=${el.img} alt="Card image cap">
-            <a class="btn" href="" @click=${loadDetails} data-id=${el._id}>Details</a>
+            <a class="btn" href="/dashboard/${el._id}" @click=${loadDetails}>Details</a>
             </div>`);
 }

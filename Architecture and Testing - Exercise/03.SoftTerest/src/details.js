@@ -1,11 +1,9 @@
-import { html, render } from "./nav.js";
+import { html, render, page } from "./nav.js";
 import { getUserData } from "./data/utils.js";
 import { del, get } from "./data/requester.js"
-import { loadDashboard } from "./dashboard.js";
-export function loadDetails(event) {
-    event.preventDefault();
-    let id = event.target.dataset.id;
-    loadCurDetails(id);
+export function loadDetails(ctx) {
+    let movieId = ctx.params.id;
+    loadCurDetails(movieId);
 }
 
 async function loadCurDetails(id) {
@@ -20,7 +18,7 @@ async function onDelete(event) {
     let id = event.target.dataset.id;
     const url = `http://localhost:3030/data/ideas/${id}`
     await del(url);
-    window.location = "/";
+    page.redirect("/dashboard");
 }
 
 function loading(data, userData) {

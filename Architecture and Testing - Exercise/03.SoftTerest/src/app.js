@@ -4,24 +4,12 @@ import { loadRegister } from "./register.js";
 import { loadLogin } from "./login.js";
 import { loadDashboard } from "./dashboard.js";
 import { createIdea } from "./create.js";
+import { loadDetails } from "./details.js";
 import {get } from "./data/requester.js";
+import { page } from "./nav.js";
 let userData = getUserData();
-const navRef = document.querySelector("nav");
 let links = document.querySelectorAll("nav a");
 let linksArray = Array.from(links);
-navRef.addEventListener("click", navigate);
-loadHome();
-
-let routes = {
-    "/": loadHome,
-    "/home": loadHome,
-    "/login": loadLogin,
-    "/create": createIdea,
-    "/register": loadRegister,
-    "/logout": onLogout,
-    "/dashboard": loadDashboard,
-}
-
 if (userData) {
     linksArray[0].style.display = "inline-block";
     linksArray[1].style.display = "inline-block";
@@ -38,22 +26,18 @@ if (userData) {
     linksArray[5].style.display = "inline-block";
 }
 
-function navigate(event) {
-    event.preventDefault();
-    let element = event.target
-    if (event.target.tagName != "IMG" && event.target.tagName != "A") {
-        return;
-    }
-    if (event.target.tagName == "IMG") {
-        element = event.target.parentElement;
-    }
-    let view = new URL(element.href).pathname;
-    routes[view]();
-}
-
+page("/", loadHome);
+page("/home", loadHome);
+page("/dashboard", loadDashboard);
+page("/dashboard/:id", loadDetails)
+page("/login", loadLogin);
+page("/register", loadRegister);
+page("/create", createIdea);
+page("/logout", onLogout);
+page();
 async function onLogout() {
     const url = "http://localhost:3030/users/logout";
     await get(url);
     deleteUserData();
-    window.location = "/";
+    page.redirect("/");
 }

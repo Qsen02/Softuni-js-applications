@@ -1,6 +1,7 @@
-import { html, render } from "./nav.js"
+import { html, render, page } from "./nav.js"
 import { post } from "./data/requester.js";
 import { addUserData } from "./data/utils.js";
+
 
 export function loadRegister() {
     let register = () => html `<div class="container home wrapper  my-md-5 pl-md-5">
@@ -60,5 +61,5 @@ async function onRegister(event) {
     let data = await post(url, { email, password });
     addUserData(data);
     event.target.reset();
-    window.location = "/";
+    page.redirect("/");
 }

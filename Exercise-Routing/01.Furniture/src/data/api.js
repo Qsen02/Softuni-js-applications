@@ -26,7 +26,8 @@ async function request(method, url, data) {
             throw new Error(err.message);
         }
         if (res.status == 204) {
-            return res;
+            deleteUserData();
+            return;
         }
         let data = await res.json();
         return data;

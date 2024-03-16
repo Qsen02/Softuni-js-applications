@@ -3,10 +3,9 @@ import {get } from "../data/api.js";
 import { getUserData } from "../data/utils.js";
 
 export async function loadMyPublications() {
-    const url = "http://localhost:3030/data/catalog";
-    let data = await get(url);
     let userData = getUserData();
-    let myData = data.filter(el => el._ownerId == userData._id);
+    const url = `http://localhost:3030/data/catalog?where=_ownerId%3D%22${userData._id}%22`;
+    let data = await get(url);
     let loadItems = (data) => html `
     <div class="row space-top">
             <div class="col-md-12">
@@ -31,5 +30,5 @@ export async function loadMyPublications() {
                 </div>
             </div>`)}
     </div>`;
-    render(loadItems(myData));
+    render(loadItems(data));
 }

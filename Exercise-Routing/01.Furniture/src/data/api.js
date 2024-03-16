@@ -21,13 +21,18 @@ async function request(method, url, data) {
             const err = await res.json();
             if (res.status == 403) {
                 deleteUserData();
+                return;
             }
             throw new Error(err.message);
+        }
+        if (res.status == 204) {
+            return res;
         }
         let data = await res.json();
         return data;
     } catch (err) {
         alert(err.message);
+        throw new Error(err.message);
     }
 }
 

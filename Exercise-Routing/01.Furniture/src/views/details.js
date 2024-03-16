@@ -21,7 +21,7 @@ async function loadCurDetails(id) {
             <div class="col-md-4">
                 <div class="card text-white bg-primary">
                     <div class="card-body">
-                        <img src=${data.img} />
+                        <img src="../.${data.img}"/>
                     </div>
                 </div>
             </div>

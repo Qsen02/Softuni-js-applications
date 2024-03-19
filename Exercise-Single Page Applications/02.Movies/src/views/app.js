@@ -1,0 +1,22 @@
+import { page } from "./render.js";
+import { loadMovies } from "./catalog.js";
+import { loadregisterForm } from "./register.js";
+import { loadLoginForm } from "./login.js";
+import { loadCreateForm } from "./addMovie.js";
+import { onLogout } from "./logout.js";
+import { loadDetails } from "./details.js";
+import { loadEditForm } from "./edit.js";
+import { onDelete } from "./delete.js";
+import { onLike } from "./liking.js";
+
+page("/", loadMovies);
+page("/catalog", loadMovies);
+page("/create", loadCreateForm);
+page("/catalog/:id", loadDetails);
+page("/edit/:id", loadEditForm);
+page("/delete/:id", onDelete);
+page("/like/:id", onLike);
+page("/login", loadLoginForm);
+page("/logout", onLogout);
+page("/register", loadregisterForm);
+page();

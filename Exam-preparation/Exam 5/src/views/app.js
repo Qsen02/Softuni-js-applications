@@ -1,0 +1,22 @@
+import { page, middlewear } from "./middlewear.js";
+import { loadHome } from "./home.js";
+import { loadRegisterForm } from "./register.js";
+import { loadLoginForm } from "./login.js";
+import { onLogout } from "./logout.js";
+import { loadCatalog } from "./dashboard.js";
+import { loadCreateForm } from "./create.js";
+import { loadDetails } from "./details.js";
+import { loadEditFrom } from "./edit.js";
+import { onDelete } from "./delete.js";
+
+page(middlewear());
+page("/", loadHome);
+page("/catalog", loadCatalog);
+page("/catalog/:id", loadDetails);
+page("/delete/:id", onDelete);
+page("/edit/:id", loadEditFrom);
+page("/create", loadCreateForm);
+page("/logout", onLogout);
+page("/login", loadLoginForm);
+page("/register", loadRegisterForm);
+page.start();

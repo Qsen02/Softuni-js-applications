@@ -51,7 +51,7 @@ export async function loadDetails(ctx) {
         :null}
     </section>`;
     ctx.render(load(data,id,data._ownerId,comments));
-    updateNav();
+    // updateNav();
 }
 
 async function addComment(event){

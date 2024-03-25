@@ -1,5 +1,4 @@
 import { getAllGames } from "../data/dataService.js";
-import { updateNav } from "../data/utils.js";
 import { html } from "./middlewear.js";
 
 export async function loadCatalog(ctx) {
@@ -21,5 +20,4 @@ export async function loadCatalog(ctx) {
        :html`<h3 class="no-articles">No articles yet</h3>`}
     </section>`;
     ctx.render(load(data));
-    updateNav();
 }

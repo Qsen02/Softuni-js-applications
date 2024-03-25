@@ -1,5 +1,5 @@
 import { registration } from "../data/userService.js";
-import { addUserData, updateNav } from "../data/utils.js";
+import { addUserData } from "../data/utils.js";
 import { html, page } from "./middlewear.js";
 
 export function loadRegisterForm(ctx) {
@@ -46,5 +46,4 @@ async function onRegister(event) {
     addUserData(data);
     event.target.reset();
     page.redirect("/");
-    updateNav();
 }

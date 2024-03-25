@@ -1,5 +1,4 @@
 import { getRecentGames } from "../data/dataService.js";
-import { updateNav } from "../data/utils.js";
 import { html } from "./middlewear.js";
 
 export async function loadHome(ctx) {
@@ -31,5 +30,4 @@ export async function loadHome(ctx) {
          : html`<p class="no-articles">No games yet</p>`}
     </section>`;
     ctx.render(load(data));
-    updateNav();
 }

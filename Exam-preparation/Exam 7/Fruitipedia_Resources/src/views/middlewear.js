@@ -4,9 +4,14 @@ import { updateNav } from "../data/utils.js";
 
 const root = document.querySelector("main");
 
-export function render(view) {
-    litRender(view, root);
-    updateNav();
+export function middlewear() {
+    return function(ctx, next) {
+        ctx.render = (view) => {
+            litRender(view, root);
+            updateNav();
+        }
+        next();
+    }
 }
 
 

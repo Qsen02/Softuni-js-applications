@@ -1,7 +1,7 @@
 import { addFruit } from "../data/dataService.js";
-import { page, html, render } from "./renderer.js";
+import { page, html } from "./middlewear.js";
 
-export function loadCreateForm() {
+export function loadCreateForm(ctx) {
     let load = () => html `
     <section id="create">
         <div class="form">
@@ -15,7 +15,7 @@ export function loadCreateForm() {
             </form>
         </div>
     </section>`
-    render(load());
+    ctx.render(load());
 }
 
 async function onCreate(event) {

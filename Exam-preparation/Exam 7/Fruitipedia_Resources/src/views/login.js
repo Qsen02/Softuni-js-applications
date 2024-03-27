@@ -1,8 +1,8 @@
-import { page, html, render } from "./renderer.js";
+import { page, html } from "./middlewear.js";
 import { logingIn } from "../data/userService.js";
 import { addUserData } from "../data/utils.js";
 
-export function loadLoginForm() {
+export function loadLoginForm(ctx) {
     let load = () => html `
    <section id="login">
         <div class="form">
@@ -17,7 +17,7 @@ export function loadLoginForm() {
             </form>
         </div>
     </section>`;
-    render(load());
+    ctx.render(load());
 }
 
 async function onLogin(event) {

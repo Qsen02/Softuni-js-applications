@@ -1,7 +1,7 @@
 import { getFruits } from "../data/dataService.js";
-import { html, render } from "./renderer.js";
+import { html } from "./middlewear.js";
 
-export async function loadCatalog() {
+export async function loadCatalog(ctx) {
     let data = await getFruits();
     let load = (data) => html `
     <h2>Fruits</h2>
@@ -16,5 +16,5 @@ export async function loadCatalog() {
         </div>`)}`
         :html`<h2>No fruit info yet.</h2>`}
     </section>`;
-    render(load(data));
+    ctx.render(load(data));
 }

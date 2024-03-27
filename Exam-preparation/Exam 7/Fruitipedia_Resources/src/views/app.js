@@ -1,4 +1,4 @@
-import { page } from "./renderer.js";
+import { page, middlewear } from "./middlewear.js";
 import { loadHome } from "./home.js";
 import { loadRegisterForm } from "./register.js";
 import { loadLoginForm } from "./login.js";
@@ -10,6 +10,7 @@ import { loadEditForm } from "./edit.js";
 import { onDelete } from "./delete.js";
 import { loadSearchForm } from "./search.js";
 
+page(middlewear());
 page("/", loadHome);
 page("/catalog", loadCatalog);
 page("/catalog/:id", loadDetails);

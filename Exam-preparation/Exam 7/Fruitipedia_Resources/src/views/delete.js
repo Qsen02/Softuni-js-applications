@@ -1,5 +1,5 @@
 import { deleteFruit } from "../data/dataService.js";
-import { page } from "./renderer.js";
+import { page } from "./middlewear.js";
 
 export async function onDelete(ctx) {
     const id = ctx.params.id;

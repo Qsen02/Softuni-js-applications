@@ -1,8 +1,8 @@
-import { page, html, render } from "./renderer.js";
+import { page, html } from "./middlewear.js";
 import { registration } from "../data/userService.js";
 import { addUserData } from "../data/utils.js";
 
-export function loadRegisterForm() {
+export function loadRegisterForm(ctx) {
     let load = () => html `
     <section id="register">
         <div class="form">
@@ -16,7 +16,7 @@ export function loadRegisterForm() {
             </form>
         </div>
     </section>`;
-    render(load());
+    ctx.render(load());
 }
 
 async function onRegister(event) {

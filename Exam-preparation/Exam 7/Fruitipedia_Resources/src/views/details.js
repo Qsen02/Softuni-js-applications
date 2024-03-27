@@ -1,6 +1,6 @@
 import { getFruitById } from "../data/dataService.js";
 import { getUserData } from "../data/utils.js";
-import { html, render } from "./renderer.js";
+import { html } from "./middlewear.js";
 
 export async function loadDetails(ctx) {
     const id = ctx.params.id;
@@ -26,5 +26,5 @@ export async function loadDetails(ctx) {
             </div>
         </div>
     </section>`;
-    render(load(data,id));
+    ctx.render(load(data,id));
 }
